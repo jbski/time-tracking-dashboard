@@ -1,9 +1,21 @@
 
+// Add code to load daily data when page is loaded
+if (window.addEventListener) {
+    window.addEventListener("load", getWeeklyData, false);
+ } else if (window.attachEvent) {
+    window.attachEvent("onload", getWeeklyData);
+ } else {
+    window.onload = getWeeklyData; //will override previously attached event listeners.
+ }
+
+
+// Add event listeners to call functions that load JSON file data
 document.getElementById('daily').addEventListener('click', getDailyData);
 document.getElementById('weekly').addEventListener('click', getWeeklyData);
 document.getElementById('monthly').addEventListener('click', getMonthlyData);
 
 
+// Function to get daily data from JSON file
 function getDailyData(){
     period = 'Yesterday';
     fetch('data.json')
@@ -42,7 +54,7 @@ function getDailyData(){
         })
     }
 
-
+// Function to get weekly data from JSON file
 function getWeeklyData(){
     period = 'Last Week';
     fetch('data.json')
@@ -81,7 +93,7 @@ function getWeeklyData(){
         })
     }
 
-
+// Function to get monthly data from JSON file
 function getMonthlyData(){
     period = 'Last Month';
     fetch('data.json')
